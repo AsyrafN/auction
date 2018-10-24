@@ -1,3 +1,28 @@
 // Place all the styles related to the WELCOME controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css?family=Barlow');
+
+body {
+	background: #310404 url(https://i.ytimg.com/vi/wOvQAhzWCrM/maxresdefault.jpg) no-repeat center center fixed; 
+	-o-background-size: cover;
+	background-size: cover;
+	font-family: 'Barlow', sans-serif;
+	color: black;	
+}
+
+/*.card {
+	margin-top: 20vh;
+}*/
+
+.card-img-top {
+	width: 18vw;
+	height: 40vh;
+	margin: auto;
+}
+
+.container {
+	width: 60vw;
+	margin-top: 15vh;
+}
