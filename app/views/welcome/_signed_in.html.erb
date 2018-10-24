@@ -1,1 +1,49 @@
-hi 
+<%= stylesheet_link_tag 'welcome' %>
+
+<div class="container">
+<h2>Top Auction of the Day</h2>
+  <div class="row">
+            <div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card card-inverse card-primary text-center">
+              <%= image_tag get_random_image, class:"card-img-top" %>
+              <div class="card-block">
+                <h4 class="card-title">Tag Heauer Watch</h4>
+                <p class="card-text">Price: RM1000</p>
+                <p class="card-text">Description: This watch have been wear once and never wear after that.</p>
+                <a href="http://v4-alpha.getbootstrap.com/components/card/" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-primary">Bid</a>
+            </div>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+        <div class="col-lg 3 col-md-3  col-sm-12 col-xs-12">
+            <div class="card card-inverse card-primary text-center">
+              <%= image_tag get_random_image, class:"card-img-top" %>
+              <div class="card-block">
+                <h4 class="card-title">Audi T4 New</h4>
+                <p class="card-text">Price: RM100000</p>
+                <p class="card-text">Description: This car have been used once and never use after that.</p>
+                <a href="http://v4-alpha.getbootstrap.com/components/card/" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-primary">Bid</a>
+            </div>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+
+        <div class="col-lg 3 col-md-3  col-sm-12 col-xs-12">
+            <div class="card card-inverse card-success text-center">
+              <%= image_tag get_random_image, class:"card-img-top" %>
+              <div class="card-block">
+                <h4 class="card-title">Ferrari </h4>
+                <p class="card-text">Price: RM1000000</p>
+                <p class="card-text">Description: This car have been used once and never use after that.</p>
+                <a href="http://v4-alpha.getbootstrap.com/components/card/" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-primary">Bid</a>
+            </div>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+</div>

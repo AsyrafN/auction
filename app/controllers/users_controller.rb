@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 	 	# p params
 	 	if user && user.authenticate(params[:password]) 
 	 		session[:user_id] = user.id
-		 		redirect_to "/users/#{current_user.id}"
+		 		redirect_to "/"
 	 	else
 	 	  puts "failed"
 	 	end
