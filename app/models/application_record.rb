@@ -1,3 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
-  self.abstract_class = true
+	include PgSearch
+  	self.abstract_class = true
+
 end
