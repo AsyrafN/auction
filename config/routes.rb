@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users, controller: "users", only: [:create, :show] do
-  	resource :products,
-  	  controller: "products",
-  	  only: [:create, :edit, :update]
+  	# resource :products,
+  	#   controller: "products",
+  	#   only: [:create, :show, :edit, :update]
     resource :password,
       controller: "passwords",
       only: [:create, :edit, :update]
   end
+
+  resources :products, controller: "products"
 end

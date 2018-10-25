@@ -1,0 +1,51 @@
+<%= stylesheet_link_tag 'products' %>
+
+<div class="vertical-center">
+<% @product.each do |p| %>
+<div class="card-deck" style="width: 25rem;">
+  <div class="card">
+    <%= image_tag get_random_image, class:"card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= p.name%></h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+
+<div class="vertical-center">
+<% @product.each do |p| %>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag get_random_image, class:"card-img-top" %>
+    <div class="card-body">
+       <tbody>
+        <tr>
+          <div>
+        <i class="fas fa-bath"></i>
+        <i class="fas fa-bed"></i>
+        <i class="fas fa-user"></i>
+        </div>
+         <p><%= p.name%></p>
+         <p><%= p.original_price%></p>
+         <p><%= p.description%></p>
+        </tr>
+        </tbody>
+      <p class="card-text"><%= p.description %></p>
+    </div>
+      <div class="card-footer">
+      
+      </div>
+  </div>
+<% end %>
+</div>
+
+<br><br><br><br>
+
+
+
+<!-- <a href="/products/new" class="btn btn-normal" tabindex="-1" role="button" aria-disabled="true">Create your Auction</a> -->
+<%= link_to '<button type="button">Create your Auction</button>'.html_safe, new_product_path %>
