@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'products' %>
+
+<h2>Your product auction</h2>
+<div class="vertical-center">
+<% @product.each do |p| %>
+<div class="card-deck" style="width: 25rem;">
+  <div class="card">
+    <%= image_tag get_random_image, class:"card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= p.name%></h5>
+      <p class="card-text"><%= p.original_price%></p>
+      <p class="card-text"><%= p.description%></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+
+<br><br><br><br>
+
+
+
+<!-- <a href="/products/new" class="btn btn-normal" tabindex="-1" role="button" aria-disabled="true">Create your Auction</a> -->
+<%= link_to '<button type="button">Create your Auction</button>'.html_safe, new_product_path %>

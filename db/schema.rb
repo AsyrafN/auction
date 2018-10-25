@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 2018_10_24_061739) do
     t.text "description"
     t.datetime "end_time"
     t.boolean "sold", default: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
