@@ -1,11 +1,11 @@
-<%= stylesheet_link_tag 'welcome' %>
+<%= stylesheet_link_tag 'products' %>
 
 <div class="container">
-<h2>Top product of the Day</h2>
+<h2>Your search product</h2>
   <div class="row">
   <% @product.each do |p| %>
             <div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
-            <div class="card card-inverse card-primary text-center">
+            <div class="card card-inverse card-primary text-center" style="width:20vw; ">
               <%= image_tag get_random_image, class:"card-img-top" %>
               <div class="card-block">
                 <p class="card-text"><%= p.name %></p>

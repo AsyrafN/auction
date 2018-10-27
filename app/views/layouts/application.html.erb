@@ -46,14 +46,22 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li> -->
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="product_search form-group form-inline my-2 my-lg-0">
+          <%= form_tag(search_path, method: "get") do %>
+            <%= text_field_tag :search, nil, placeholder: "Search auctions ...", class: "form-control" %>
+           <%= submit_tag "", style: "display: none;"%>
+           <% end -%>
+        </div>
       </div>
     </nav>
   </header>
+<% if current_user %>
+  Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/sign_out' %>
+<% else %>
+  <%= link_to 'Login', '/sign_in' %> | <%= link_to 'Signup', '/sign_up' %>
+<% end %>
 
     <%= yield %>
   </body>
 </html>
+

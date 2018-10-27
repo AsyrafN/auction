@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/sign_in" => "users#login", as: "login"
   get "/sign_out" => "users#destroy", as: "sign_out"
 
+  get "/search" => "products#search"
   root 'welcome#index'
 
   resources :users, controller: "users", only: [:create, :show] do
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
-  resources :products, controller: "products"
+  resources :products, controller: "products" 
 end
