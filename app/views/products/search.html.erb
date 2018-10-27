@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag 'products' %>
+
+<div class="container">
+<h2>Your search product</h2>
+  <div class="row">
+  <% @product.each do |p| %>
+            <div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card card-inverse card-primary text-center" style="width:20vw; ">
+              <%= image_tag get_random_image, class:"card-img-top" %>
+              <div class="card-block">
+                <p class="card-text"><%= p.name %></p>
+                <p class="card-text">Original Price: $<%= p.original_price %></p>
+                <p class="card-text">Selling price: $<%= p.current_price %></p>
+                <p class="card-text">Description: $<%= p.description %></p>
+                <a href="/products/<%= p.id%>" class="btn btn-primary">Learn More</a>
+                <a href="#" class="btn btn-primary">Buy</a>
+            </div>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>

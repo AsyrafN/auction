@@ -1,0 +1,128 @@
+<%= stylesheet_link_tag 'payment' %>
+<div class="card text-center vertical-center-s" style="width: 18rem;">
+ <%= image_tag get_random_image, class:"card-img-top" %>
+  <div class="card-body">
+    <p class="card-text">
+    	<p>Item name: <%= @product.name %></p>
+    	<p>Price: <%= @product.original_price%></p>
+    	<p>Description: <%= @product.description%></p>
+    </p>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Pay now
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Payment for <%=  %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="demo-frame">
+
+            <%= form_for :checkout_form, url: products_checkout_path(id: @product.id), html: { id: "cardForm"} do |form| %> 
+
+              <%= form.label :card_number, "Credit Card Number", html: {class: "hosted-fields--label"} %>
+              <div id="card-number" class="hosted-field"></div>
+
+              <%= form.label :expiration_date, "Expiration Date", html: {class: "hosted-fields--label"} %>
+              <div id="expiration-date" class="hosted-field"></div>
+
+              <%= form.label :cvv, "CVV", html: {class: "hosted-fields--label"} %>
+              <div id="cvv" class="hosted-field"></div>
+
+              <%= form.hidden_field "payment_method_nonce" %>
+          </div>
+          	<div class="button-container">
+                <%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id: "submit-payment-btn" %>
+            </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+  <!-- Load the Hosted Fields component. -->
+  <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
+<script>
+      var form = document.querySelector('#cardForm');
+      var submit = document.querySelector("#submit-payment-btn");
+      
+
+      braintree.client.create({
+        authorization: '<%= @client_token %>'
+      }, function (clientErr, clientInstance) {
+        if (clientErr) {
+          console.error(clientErr);
+          return;
+        }
+
+        // This example shows Hosted Fields, but you can also use this
+        // client instance to create additional components here, such as
+        // PayPal or Data Collector.
+
+        braintree.hostedFields.create({
+          client: clientInstance,
+          styles: {
+            'input': {
+              'font-size': '14px'
+            },
+            'input.invalid': {
+              'color': 'red'
+            },
+            'input.valid': {
+              'color': 'green'
+            }
+          },
+          fields: {
+            number: {
+              selector: '#card-number',
+              placeholder: '4111 1111 1111 1111'
+            },
+            cvv: {
+              selector: '#cvv',
+              placeholder: '123'
+            },
+            expirationDate: {
+              selector: '#expiration-date',
+              placeholder: '10/2019'
+            }
+          }
+        }, function (hostedFieldsErr, hostedFieldsInstance) {
+          if (hostedFieldsErr) {
+            console.error(hostedFieldsErr);
+            return;
+          }
+
+          submit.removeAttribute('disabled');
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+              if (tokenizeErr) {
+                console.error(tokenizeErr);
+                return;
+              }
+
+              // If this was a real integration, this is where you would
+              // send the nonce to your server.
+              document.querySelector('input[name="checkout_form[payment_method_nonce]"]').value = payload.nonce;
+              form.submit()
+            });
+
+            $( "submit" ).click(function() {
+              $( "#flash" ).fadeOut( "slow", function() {
+              });
+            });
+          }, false);
+        });
+      });
+    </script>

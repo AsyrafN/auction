@@ -1,23 +1,5 @@
-<h1>New Product</h1>
+<h1>New product</h1>
 
-<div class="color">
- <%= form_for :product, url: {action: "create"} do |f| %>
+<%= render 'form' %>
 
-  	<div class="text-field">
-  		<%= f.label :Name %>
-  		<%= f.text_field :name %>
-	</div>
-	<div class="text-field">
-		<%= f.label :Price %>
-  		<%= f.text_field :original_price %>
-	</div>
-	<div class="text-field">
-		<%= f.label :Description %>
-  		<%= f.text_field :description %>
-	</div>
-	
-	<div class="actions">
-	    <%= f.submit 'Submit' %>
-	</div>
-<% end -%>
-</div>
+<%= link_to 'Back', products_path %>

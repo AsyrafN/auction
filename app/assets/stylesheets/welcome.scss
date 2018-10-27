@@ -16,7 +16,7 @@ body {
 	margin-top: 20vh;
 }*/
 
-.card-img-top {
+/*.card-img-top {
 	width: 18vw;
 	height: 40vh;
 	margin: auto;
@@ -25,4 +25,17 @@ body {
 .container {
 	width: 60vw;
 	margin-top: 15vh;
+}*/
+
+.vertical-center {
+ min-height: 100%;
+ min-height: 100vh;
+ display: flex;
+ align-items: center;
+ margin-left: 12vw;
+
+}
+
+.card-deck {
+	margin: 2vh;
 }

@@ -62,3 +62,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg_search'
+
+gem "figaro"
+
+gem "braintree", "~> 2.90.0"
+
+gem 'jquery-rails'
+
+gem 'bootstrap', '~> 4.1.3'
+
+gem 'sprockets-rails', :require => 'sprockets/railtie'

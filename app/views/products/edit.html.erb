@@ -1,0 +1,26 @@
+<h1>Edit product</h1>
+
+<%= form_for @product, url: {action: "update"} do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :original_price %><br />
+    <%= f.text_field :original_price %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :sold %><br />
+    <%= f.check_box :sold %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update"%>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', products_path %>
