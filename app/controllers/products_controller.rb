@@ -38,6 +38,8 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		@client_token = Braintree::ClientToken.generate
+		@product = Product.find(params[:id])
 		
 	end
 
@@ -51,6 +53,24 @@ class ProductsController < ApplicationController
 		else
 			redirect_to root_path
 		end
+	end
+
+	def checkout
+	  nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
+	  product = Product.find(params[:id])
+	  result = Braintree::Transaction.sale(
+	   :amount => "#{product.original_price}", #this is currently hardcoded
+	   :payment_method_nonce => nonce_from_the_client,
+	   :options => {
+	      :submit_for_settlement => true
+	    }
+	   )
+	  if result.success?
+	  	flash[:success] = "Your transaction has successful"
+	    redirect_to :root
+	  else
+	    redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
+	  end
 	end
 
 	private

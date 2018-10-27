@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post "/sign_in" => "users#login", as: "login"
   get "/sign_out" => "users#destroy", as: "sign_out"
 
+  post 'products/checkout'
+
   get "/search" => "products#search"
   root 'welcome#index'
 

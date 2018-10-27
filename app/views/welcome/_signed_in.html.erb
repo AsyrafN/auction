@@ -1,23 +1,25 @@
 <%= stylesheet_link_tag 'welcome' %>
 
-<div class="container">
-<h2>Top product of the Day</h2>
-  <div class="row">
+
+<h2>Your product auction</h2>
+<div class="vertical-center">
+<div class="d-flex flex-wrap">
   <% @product.each do |p| %>
-            <div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
-            <div class="card card-inverse card-primary text-center">
-              <%= image_tag get_random_image, class:"card-img-top" %>
-              <div class="card-block">
-                <p class="card-text"><%= p.name %></p>
-                <p class="card-text">Original Price: $<%= p.original_price %></p>
-                <p class="card-text">Selling price: $<%= p.current_price %></p>
-                <p class="card-text">Description: $<%= p.description %></p>
-                <a href="/products/<%= p.id%>" class="btn btn-primary">Learn More</a>
-                <a href="#" class="btn btn-primary">Buy</a>
-            </div>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
+  <div class="card-deck" style="width: 25rem;">
+    <div class="card">
+      <%= image_tag get_random_image, class:"card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"><%= p.name%></h5>
+        <p class="card-text"><%= p.original_price%></p>
+        <p class="card-text">Selling price: $<%= p.current_price %></p>
+        <p class="card-text"><%= p.description%></p>
+        <a href="/products/<%= p.id%>" class="btn btn-primary">View <%= p.name %></a>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"><b>Posted at:<%= time_ago_in_words(p.updated_at) %></small>
+      </div>
     </div>
-    <% end %>
+  </div>
+  <% end %>
+  </div>
 </div>
