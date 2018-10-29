@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get "/sign_up" => "users#new", as: "sign_up"
   get "/sign_in" => "users#sign_in", as: "sign_in"
   post "/sign_in" => "users#login", as: "login"
-  get "/sign_out" => "users#destroy", as: "sign_out"
+  get "/sign_out" => "users#sign_out", as: "sign_out"
+
+  get "/auth/:provider/callback" => "users#create_from_omniauth"
+
 
   post 'products/checkout'
 

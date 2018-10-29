@@ -72,3 +72,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.3'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth'
