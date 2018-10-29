@@ -44,9 +44,9 @@
           </li> -->
         </ul>
         <div class="product_search form-group form-inline my-2 my-lg-0">
-          <%= form_tag(search_path, method: "get") do %>
-            <%= text_field_tag :search, nil, placeholder: "Search auctions ...", class: "form-control" %>
-           <%= submit_tag "", style: "display: none;"%>
+           <%= form_for :products, url: search_path, method: :get do |f| %>
+             <%= f.text_field :search, list: "list", placeholder: "search products", name: "search", class: "form-control" %>
+             <datalist id="list"></datalist>
            <% end -%>
         </div>
       </div>
@@ -68,8 +68,36 @@
 <script>
   $(".alert").delay(1000).fadeOut('slow');
 
+  $(document).on('turbolinks:load', function(){
+    $("#products_search").keyup(function(){
+      console.log("products_search")      
+      autocomplete()      
+    });
+
+    function autocomplete(){
+      $.ajax({
+        url: '/products/ajax_search',
+        type: 'GET',
+        data: {search: $("#products_search").val()},
+  //takes the form data and authenticity toke and converts it into a standard URL
+        dataType: 'json', //specify what type of data you're expecting back from the servers
+        error: function() {
+            console.log("Something went wrong");
+        },
+        success: function(data) {
+          console.log(data)
+          document.querySelector('#list').innerHTML = ""
+          data.forEach(function(element) {
+            var option = document.createElement("option");
+            option.value = element;
+            //append option to list
+            $("#list").append(option);
+          });
+        }
+      });
+    }
+  });
 </script>
 
   </body>
 </html>
-

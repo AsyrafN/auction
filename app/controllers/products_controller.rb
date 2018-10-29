@@ -5,11 +5,18 @@ class ProductsController < ApplicationController
 	end
 
 	def search
-		if params[:search].present?
-	      @product = Product.perform_search(params[:search])
-	    else
-	      @product = Product.all
-	    end
+		@product = Product.all
+		@product = Product.search_by_name(params[:search])
+		
+	end
+
+	def ajax_search
+	   @product = Product.all
+	   @product = Product.search_by_name(params[:search])
+	   respond_to do |format|
+	     format.json { render json: @products }
+	     format.js # remote: true is sent a js format and sends you to search.js.erb
+	   end
 	end
 
 	def new

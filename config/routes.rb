@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback" => "users#create_from_omniauth"
 
+  get "products/ajax_search" => 'products#ajax_search', as: 'ajax_search'
 
   post 'products/checkout'
 
