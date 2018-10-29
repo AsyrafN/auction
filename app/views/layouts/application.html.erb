@@ -44,7 +44,7 @@
           </li> -->
         </ul>
         <div class="product_search form-group form-inline my-2 my-lg-0">
-           <%= form_for :products, url: search_path, method: :get do |f| %>
+           <%= form_for :products, url: search_path, method: :get, remote: true do |f| %>
              <%= f.text_field :search, list: "list", placeholder: "search products", name: "search", class: "form-control" %>
              <datalist id="list"></datalist>
            <% end -%>
@@ -87,7 +87,7 @@
         success: function(data) {
           console.log(data)
           document.querySelector('#list').innerHTML = ""
-          data.forEach(function(element) {
+          data.autofill.forEach(function(element) {
             var option = document.createElement("option");
             option.value = element;
             //append option to list

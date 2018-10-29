@@ -13,10 +13,14 @@ class ProductsController < ApplicationController
 	def ajax_search
 	   @product = Product.all
 	   @product = Product.search_by_name(params[:search])
-	   respond_to do |format|
-	     format.json { render json: @products }
-	     format.js # remote: true is sent a js format and sends you to search.js.erb
+	   autofill = []
+	   @product.each do |p|
+
+	   	autofill << p.name
+
 	   end
+	   render :json => { autofill: autofill }
+	  
 	end
 
 	def new
